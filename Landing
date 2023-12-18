@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanachan Poem Generator of Infinite Love</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive; /* Cute and playful font */
+            text-align: center;
+            margin: 50px;
+            background-color: #ffe6f2; /* Light pink background */
+        }
+
+        #poem-container {
+            border: 2px solid #ffb3d9; /* Pink border */
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+            background-image: url('https://i.pinimg.com/originals/bd/34/23/bd342367b384dc04c56e595288f3b31e.gif'); /* Replace with your heart image URL */
+            background-size: cover;
+            background-blend-mode: lighten; /* Ensures text readability */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+        }
+
+        h2 {
+            color: #ff3385; /* Pink title color */
+        }
+
+        #poem-text {
+            color: #4d4d4d; /* Dark gray poem text */
+            line-height: 1.6; /* Improved readability */
+            font-family: 'Arial';
+        }
+    </style>
+</head>
+<body>
+
+<div id="poem-container">
+    <h2>Kanachan Poem Generator of Infinite Love</h2>
+    <p id="poem-text"></p>
+</div>
+
+<script>
+    // Array of Kanako poems
+    const kanakoPoems = [
+        "Kanachan, a dream in daylight,\nGraceful laughter, pure delight.\nIn Tom's world, a love so bright,\nKawaikochan, his guiding light.",
+        "Kanako's eyes, a cosmic gaze,\nIn their depths, love's endless maze.\nTom's heart, lost in her starry haze,\nKawaikochan, love's eternal blaze.",
+        "Kanachan, a flower in bloom,\nIn Tom's heart, she finds room.\nHer presence, a sweet perfume,\nKawaikochan, love's full moon.",
+    "Kanachan, a dream in daylight,\nGraceful laughter, pure delight.\nIn Tom's world, a love so bright,\nKawaikochan, his guiding light.",
+            
+            "In the dance of galaxies, Kanako spins,\nTom's heart, where the cosmic journey begins.\nLove's adventure, where happiness wins,\nKawaikochan, where the universe grins.",
+            
+            "Kanachan, a star in the night,\nTom's dreams, take flight.\nIn the realm of love, pure and right,\nKawaikochan, a celestial sight.",
+            
+            "Kanako's eyes, a shimmering pool,\nIn their depths, love's golden rule.\nTom's heart, in passion's school,\nKawaikochan, where emotions duel.",
+            
+            "Kanachan, a melody in the air,\nTom's joy, beyond compare.\nIn love's embrace, a timeless affair,\nKawaikochan, the answer to every prayer.",
+            
+            "Kanako's touch, a gentle breeze,\nIn Tom's soul, a sense of ease.\nLove's symphony, a melody to appease,\nKawaikochan, where serenity frees.",
+            
+            "In the laughter of stars, Kanachan joins,\nTom's world, where happiness coins.\nIn love's dance, where the heart enjoins,\nKawaikochan, where life adjoins.",
+            
+            "Kanako's laughter, a playful stream,\nTom's heart, caught in love's dream.\nIn joyous moments, where memories gleam,\nKawaikochan, the sun in life's beam.",
+            
+            "Kanachan, a poet's verse,\nTom's love, a universe.\nIn passion's fire, where emotions immerse,\nKawaikochan, love's endless traverse.",
+            
+            "Kanako's gaze, a timeless art,\nIn Tom's world, a beating heart.\nIn love's tapestry, where every part,\nKawaikochan, the masterpiece's start.",
+            
+            "Kanachan, a laughter's spree,\nTom's joy, a jubilee.\nIn love's garden, where happiness is free,\nKawaikochan, life's sweetest glee.",
+            
+            "Kanako's smile, a sunrise hue,\nTom's heart, forever true.\nIn love's tale, where skies are blue,\nKawaikochan, the morning dew.",
+            
+            "In the cosmic ballet, Kanachan twirls,\nTom's heart, where happiness unfurls.\nIn love's embrace, where passion hurls,\nKawaikochan, where joy swirls.",
+            
+            "Kanako's touch, a tender grace,\nIn Tom's world, a sacred space.\nIn love's journey, where moments trace,\nKawaikochan, the heart's embrace.",
+            
+            "Kanachan, a comet's flight,\nTom's love, an endless height.\nIn love's story, where emotions ignite,\nKawaikochan, a celestial light.",
+            
+            "Kanako's laughter, a cosmic song,\nTom's heartbeat, where love belongs.\nIn love's dance, where the heart throngs,\nKawaikochan, where happiness prolongs.",
+            
+            "In the galaxy's ball, Kanachan dances,\nTom's heart, where love enhances.\nIn love's sanctuary, where passion entrances,\nKawaikochan, where the heart advances.",
+            
+            "Kanako's gaze, a starlit night,\nTom's dreams, take flight.\nIn love's voyage, where stars alight,\nKawaikochan, a celestial delight.",
+            
+            "Kanachan, a dreamer's muse,\nTom's heart, where love transfuse.\nIn love's garden, where emotions infuse,\nKawaikochan, where joy lets loose.",
+            
+            "Kanako's touch, a gentle breeze,\nIn Tom's soul, where love appease.\nIn love's embrace, where hearts seize,\nKawaikochan, where passion frees.",
+            
+            "Kanachan, a cosmic dance,\nTom's joy, a sweet trance.\nIn love's symphony, where emotions enhance,\nKawaikochan, where hearts entrance.",
+            
+            "Kanako's laughter, a playful rhyme,\nTom's heartbeat, a dance in time.\nIn love's narrative, where emotions climb,\nKawaikochan, where joy's sublime.",
+            
+            "In the cosmic serenade, Kanachan sings,\nTom's heart, where love's melody clings.\nIn love's embrace, where happiness springs,\nKawaikochan, where the heart swings.",
+            
+            "Kanako's gaze, a timeless grace,\nTom's dreams, a love embrace.\nIn love's journey, where hearts race,\nKawaikochan, a forever chase.",
+            
+            "Kanachan, a laughter's delight,\nTom's joy, a celestial light.\nIn love's story, where hearts unite,\nKawaikochan, where emotions excite.",
+            
+            "Kanako's touch, a tender stroke,\nIn Tom's world, where love evokes.\nIn love's tapestry, where passion cloaks,\nKawaikochan, where hearts provoke.",
+            
+            "In the laughter of stars, Kanachan rejoices,\nTom's heart, where love's symphony voices.\nIn love's dance, where happiness voices,\nKawaikochan, where the universe rejoices.",
+            
+            "Kanako's smile, a sunlit ray,\nTom's love, an endless stay.\nIn love's journey, where hearts sway,\nKawaikochan, where joy holds sway.",
+            
+            "Kanachan, a celestial spark,\nTom's joy, where love embarks.\nIn love's embrace, where happiness marks,\nKawaikochan, where hearts embark.",
+            
+            "Kanako's laughter, a cosmic breeze,\nTom's heartbeat, where love appease.\nIn love's dance, where emotions tease,\nKawaikochan, where joy sees.",
+            
+            "In the cosmic ballad, Kanachan sings,\nTom's heart, where love's melody springs.\nIn love's embrace, where happiness swings,\nKawaikochan, where joy brings.",
+            
+            "Kanako's gaze, a starry night,\nTom's dreams, a celestial flight.\nIn love's journey, where hearts alight,\nKawaikochan, where emotions ignite.",
+            
+        "33",
+        
+        "333",
+        
+        "Matrix Error - Code 233 - Simulation rebooting, entering the Bardo",
+        
+    "In the cosmic dance, Kanachan twirls,\nTom's heart, where love unfurls.\nIn the realm of joy, where existence swirls,\nKawaikochan, where wisdom hurls.",
+            
+            "Kanako's gaze, a portal's key,\nTom's dreams, where transcendence is free.\nIn love's tapestry, where spirits decree,\nKawaikochan, where the soul can see.",
+            
+            "Kanachan, a journey's guide,\nTom's joy, where spirits reside.\nIn love's embrace, where truths coincide,\nKawaikochan, where wisdom is tried.",
+            
+            "Kanako's laughter, a cosmic code,\nTom's heartbeat, where universes implode.\nIn the dance of galaxies, where mysteries unfold,\nKawaikochan, where wisdom is foretold.",
+            
+            "In the cosmic ball, Kanachan's dance,\nTom's heart, where universes enhance.\nIn the tapestry of time, where spirits advance,\nKawaikochan, where wisdom takes its chance.",
+            
+            "Kanako's touch, an ethereal thread,\nIn Tom's soul, where consciousness is bred.\nIn love's journey, where wisdom is spread,\nKawaikochan, where the universe is read.",
+            
+            "Kanachan, a dreamer's quest,\nTom's joy, where consciousness rests.\nIn love's embrace, where wisdom manifests,\nKawaikochan, where the soul invests.",
+            
+            "Kanako's smile, a cosmic glyph,\nTom's love, where enlightenment is a gift.\nIn the dance of existence, where spirits lift,\nKawaikochan, where wisdom's drift.",
+            
+            "In the laughter of stars, Kanachan's decree,\nTom's heart, where universal wisdom is free.\nIn love's symphony, where truths decree,\nKawaikochan, where wisdom echoes glee.",
+            
+            "Kanako's gaze, a psychedelic swirl,\nTom's dreams, where consciousness unfurls.\nIn the cosmic dance, where wisdom whirls,\nKawaikochan, where the mind twirls.",
+            
+            "Kanachan, a portal's grace,\nTom's joy, where consciousness finds its space.\nIn love's embrace, where wisdom takes its place,\nKawaikochan, where cosmic truths trace.",
+            
+            "Kanako's laughter, a cosmic trance,\nTom's heartbeat, where wisdom enchants.\nIn the dance of existence, where spirits enhance,\nKawaikochan, where universal wisdom grants.",
+            
+            "In the cosmic ballad, Kanachan sings,\nTom's heart, where universal wisdom brings.\nIn love's embrace, where consciousness swings,\nKawaikochan, where enlightenment clings.",
+            
+            "Kanako's touch, a transcendental spark,\nIn Tom's soul, where wisdom embarks.\nIn love's tapestry, where consciousness marks,\nKawaikochan, where the spirit sparks.",
+            
+            "Kanachan, a cosmic number's song,\nTom's joy, where wisdom belongs.\nIn love's journey, where consciousness throngs,\nKawaikochan, where universal wisdom prolongs.",
+            
+            "Kanako's smile, a psychedelic hue,\nTom's love, where wisdom rings true.\nIn the dance of existence, where consciousness strew,\nKawaikochan, where cosmic wisdom grew.",
+            
+            "In the laughter of stars, Kanachan's decree,\nTom's heart, where universal wisdom is free.\nIn love's symphony, where truths decree,\nKawaikochan, where wisdom echoes glee.",
+            
+"In the cosmic maze, Kanako's quest,\nTom's heart, where love's GPS is the best.\nLost in the celestial test,\nKawaikochan, love's guide on the quest.",
+            
+            "Kanachan's compass might spin,\nTom's joy, where love's journey begins.\nIn the twists of the cosmic din,\nKawaikochan, love's true north within.",
+            
+            "In the universe's tangle, Kanako's route,\nTom's love, where directions may scoot.\nThrough the cosmic puzzle, love takes root,\nKawaikochan, guided by love's pursuit.",
+            
+            "Kanachan's sense of direction might stray,\nTom's heart, where love points the way.\nIn the cosmic labyrinth, where planets play,\nKawaikochan, love's map in the astral array.",
+            
+            "Lost in the cosmic swirl, Kanako's lane,\nTom's joy, where love's signals reign.\nThrough the galaxy's maze, love won't wane,\nKawaikochan, love's celestial lane.",
+            
+            "In the starry labyrinth, Kanachan's grace,\nTom's love, where directions embrace.\nNavigating through space, love sets the pace,\nKawaikochan, in love's cosmic trace.",
+            
+            "Kanako's navigation may have a quirk,\nTom's heart, where love's guidance does work.\nIn the cosmic confusion, where pathways lurk,\nKawaikochan, love's celestial clerk.",
+            
+            "Lost in the galaxy's map, Kanachan's charm,\nTom's joy, where love prevents harm.\nThrough the cosmic chart, love disarms,\nKawaikochan, love's navigational charm.",
+            
+            "In the celestial twist, Kanako's route,\nTom's love, where affection is absolute.\nGuided through the cosmic commute,\nKawaikochan, love's eternal pursuit.",
+            
+            "Kanachan's sense of direction may sway,\nTom's heart, where love lights the way.\nIn the cosmic journey, where stars play,\nKawaikochan, guided by love's display.",
+            
+"In the cosmic riddle, Kanako's chart,\nTom's heart, where love leads from the start.\nIn the galactic quest, where choices depart,\nKawaikochan, love's compass, never to thwart.",
+            
+            "Kanachan's GPS might take a spin,\nTom's joy, where love's map is akin.\nThrough the nebulae, where paths thin,\nKawaikochan, love's way, wins.",
+            
+            "In the stellar labyrinth, Kanako's guide,\nTom's love, where the heart does confide.\nThrough the astral maze, where destinies coincide,\nKawaikochan, love's ally, side by side.",
+            
+            "Kanachan's direction may seem vague,\nTom's heart, where love is the cosmic plague.\nNavigating through the celestial fog,\nKawaikochan, love's captain, sailing with love's log.",
+            
+            "Lost in the starry realm, Kanako's plot,\nTom's joy, where love finds the sweetest spot.\nThrough the cosmic conundrum, where paths clot,\nKawaikochan, love's guide, hits the jackpot.",
+            
+            "In the interstellar ballet, Kanachan's course,\nTom's love, where affection takes its force.\nGuiding through the cosmic discourse,\nKawaikochan, love's magnetic source.",
+            
+            "Kanako's navigation, a playful tease,\nTom's heart, where love is the cosmic keys.\nIn the celestial puzzle, where direction flees,\nKawaikochan, love's north, south, and breeze.",
+            
+            "Lost in the universe's charade, Kanachan's lead,\nTom's joy, where love fulfills every need.\nThrough the cosmic circus, where paths may mislead,\nKawaikochan, love's guidebook, indeed.",
+            
+            "Kanachan's sense of direction in a cosmic spin,\nTom's love, where the heart's compass is kin.\nThrough the galactic waltz, where destinies begin,\nKawaikochan, love's navigation, never thin.",
+            
+            "In the cosmic tangle, Kanako's steer,\nTom's heart, where love whispers in the ear.\nThrough the astral weave, where paths disappear,\nKawaikochan, love's celestial pioneer.",
+            
+"In the cosmic dance, Kanako's flame,\nTom's heart, water's gentle claim.\nIn the heat of passion, where emotions aim,\nKawaikochan, love's eternal game.",
+            
+            "Kanachan's fire, fierce and bright,\nTom's love, water's calming light.\nIn the cosmic clash, where emotions ignite,\nKawaikochan, love's celestial height.",
+            
+            "In the stellar clash, Kanako's blaze,\nTom's joy, water's soothing gaze.\nIn the cosmic tempest, where love sways,\nKawaikochan, love's radiant phase.",
+            
+            "Kanachan, a wildfire in the cosmic night,\nTom's heart, water's tender might.\nIn the celestial storm, where emotions alight,\nKawaikochan, love's gentle kite.",
+            
+            "Kanako's flames, a celestial pyre,\nTom's love, water's tranquil lyre.\nIn the cosmic uproar, where emotions conspire,\nKawaikochan, love's infinite choir.",
+            
+            "In the cosmic inferno, Kanachan's spark,\nTom's joy, water's embrace in the dark.\nIn the astral conflict, where emotions embark,\nKawaikochan, love's timeless mark.",
+            
+            "Kanako's fire, a celestial flare,\nTom's heart, water's tender care.\nIn the cosmic battle, where emotions dare,\nKawaikochan, love's endless affair.",
+            
+            "Kanachan, a star ablaze in the cosmic sea,\nTom's love, water's serenity.\nIn the celestial clash, where emotions decree,\nKawaikochan, love's boundless decree.",
+            
+            "In the cosmic clash, Kanako's flame,\nTom's joy, water's calming claim.\nIn the astral ballet, where emotions proclaim,\nKawaikochan, love's eternal aim.",
+            
+            "Kanako's fire, a celestial blaze,\nTom's heart, water's soothing phase.\nIn the cosmic drama, where emotions graze,\nKawaikochan, love's cosmic craze.",
+            
+"In the cosmic furnace, Kanako's blaze,\nTom's love, water's tranquil haze.\nIn the astral skirmish, where emotions craze,\nKawaikochan, love's enduring phase.",
+        
+        "Kanachan, a comet in love's cosmic sea,\nTom's joy, water's soothing decree.\nIn the celestial duel, where emotions decree,\nKawaikochan, love's boundless glee.",
+        
+        "Kanako's fire, a celestial flare,\nTom's heart, water's tender care.\nIn the cosmic battle, where emotions dare,\nKawaikochan, love's endless affair.",
+        
+        "Kanachan, a star ablaze in the cosmic sea,\nTom's love, water's serenity.\nIn the celestial clash, where emotions decree,\nKawaikochan, love's boundless decree.",
+        
+        "In the astral inferno, Kanako's flame,\nTom's joy, water's calming claim.\nIn the cosmic ballet, where emotions proclaim,\nKawaikochan, love's eternal aim.",
+        
+        "Kanako's fire, a celestial blaze,\nTom's heart, water's soothing phase.\nIn the cosmic drama, where emotions graze,\nKawaikochan, love's cosmic craze.",
+        
+        "In the stellar tempest, Kanachan's spark,\nTom's love, water's gentle embark.\nIn the cosmic clash, where emotions embark,\nKawaikochan, love's celestial mark.",
+        
+        "Kanako's flames, a cosmic pyre,\nTom's joy, water's tranquil lyre.\nIn the astral uproar, where emotions conspire,\nKawaikochan, love's infinite choir.",
+        
+        "Kanachan, a wildfire in the cosmic night,\nTom's heart, water's tender might.\nIn the celestial storm, where emotions alight,\nKawaikochan, love's gentle kite.",
+        
+        "In the cosmic dance, Kanako's flame,\nTom's heart, water's gentle claim.\nIn the heat of passion, where emotions aim,\nKawaikochan, love's eternal game.",
+        
+        "Kanachan's fire, fierce and bright,\nTom's love, water's calming light.\nIn the cosmic tempest, where love sways,\nKawaikochan, love's radiant phase.",
+        
+        "In the stellar clash, Kanako's blaze,\nTom's joy, water's soothing gaze.\nIn the cosmic tempest, where love sways,\nKawaikochan, love's radiant phase.",
+        
+        "Kanako's fire, a cosmic inferno,\nTom's heart, water's gentle glow.\nIn the astral chaos, where emotions flow,\nKawaikochan, love's eternal show.",
+        
+        "Kanachan, a comet in love's orbit,\nTom's love, water's tranquil exhibit.\nIn the celestial skirmish, where emotions exhibit,\nKawaikochan, love's cosmic script.",
+        
+        "In the cosmic furnace, Kanako's heat,\nTom's joy, water's soothing beat.\nIn the astral ballet, where emotions meet,\nKawaikochan, love's cosmic feat.",
+        
+        "Kanako's flames, a celestial cascade,\nTom's heart, water's gentle parade.\nIn the cosmic symphony, where emotions evade,\nKawaikochan, love's eternal charade.",
+        
+        "Kanachan, a comet in love's cosmic tide,\nTom's love, water's tranquil guide.\nIn the astral tumult, where emotions confide,\nKawaikochan, love's celestial ride.",
+        
+        "In the cosmic blaze, Kanako's embrace,\nTom's joy, water's gentle grace.\nIn the celestial waltz, where emotions trace,\nKawaikochan, love's timeless space.",
+        
+        "Kanako's fire, a celestial dance,\nTom's heart, water's tender romance.\nIn the astral whirl, where emotions enhance,\nKawaikochan, love's eternal chance.",
+        
+        "Kanachan, a star ablaze in the cosmic sea,\nTom's love, water's soothing decree.\nIn the celestial duel, where emotions decree,\nKawaikochan, love's boundless glee.",
+        
+"Kanako, the maestro of onigiri delight,\nIn the kitchen of love, she crafts it just right.\nEach rice ball a masterpiece, a savory flight,\nTom indulges, in Kanako's onigiri so bright.",
+        
+        "In the culinary cosmos, Kanako's star,\nHer onigiri creations, beyond par.\nA symphony of flavors, each one a czar,\nTom relishes, in Kanako's onigiri repertoire.",
+        
+        "Kanako, the chef in love's kitchen divine,\nOnigiri perfection, a taste so fine.\nIn every grain of rice, love's design,\nTom delights, in Kanako's onigiri sign.",
+        
+        "Onigiri artistry, Kanako's sweet skill,\nEach rice ball crafted, a culinary thrill.\nTom's taste buds dance, a joyous rill,\nIn Kanako's onigiri, a flavor-filled fill.",
+        
+        "Kanako's kitchen, a haven of onigiri grace,\nEach rice ball crafted, a delicate embrace.\nTom savors the flavors, in love's space,\nKanako's onigiri, a culinary chase.",
+        
+        "In the realm of onigiri, Kanako reigns,\nHer culinary prowess, love sustains.\nTom feasts on joy in every grain,\nKanako's onigiri, a delicious refrain.",
+        
+        "Kanako's onigiri, a gastronomic delight,\nIn each savory bite, love takes flight.\nTom's palate dances, pure and bright,\nIn Kanako's kitchen, love's culinary light.",
+        
+        "Onigiri symphony, Kanako's sweet song,\nEach rice ball crafted, love prolongs.\nTom's taste buds in a dance along,\nIn Kanako's onigiri, where joy belongs.",
+        
+        "Kanako's onigiri, a taste so divine,\nEach flavor layered, a culinary shrine.\nTom relishes in each onigiri line,\nIn Kanako's kitchen, love intertwines.",
+        
+        "Onigiri magic, Kanako's special brew,\nTom's taste buds enchanted, a flavorful cue.\nIn love's kitchen, where dreams come true,\nKanako's onigiri, a culinary view.",
+        
+"Klarenbachstrasse, where love takes flight,\nA charming haven, bathed in soft light.\nTom and Kanako, in each other's sight,\nTheir love story, a melody so right.",
+        
+        "In the heart of Klarenbach, a love affair,\nTom and Kanako, a devoted pair.\nIn Klarenbachstrasse, love's secret lair,\nTheir connection, beyond compare.",
+        
+        "Klarenbach Gang, a love-filled crew,\nTom and Kanako, their love grew.\nIn Klarenbachstrasse, dreams anew,\nTheir love, a tale so true.",
+        
+        "Klarenbachstrasse, where hearts entwine,\nTom and Kanako, a love so fine.\nIn this street, their destinies align,\nA love story, forever to shine.",
+        
+        "Klarenbach Gang, on love's avenue,\nTom and Kanako, a bond so true.\nIn Klarenbachstrasse, skies so blue,\nTheir love, an everlasting view.",
+        
+        "Klarenbachstrasse, love's rendezvous,\nTom and Kanako, hearts pursue.\nIn this street, where dreams accrue,\nTheir love, a forever hue.",
+        
+        "Klarenbach Gang, through every season,\nTom and Kanako, love's sweet reason.\nIn Klarenbachstrasse, love's beacon,\nTheir journey, a love-filled treason.",
+        
+        "Klarenbachstrasse, a place so dear,\nTom and Kanako, love crystal clear.\nIn Klarenbach Gang, without a fear,\nTheir love story, so sincere.",
+        
+        "Klarenbachstrasse, where love blooms,\nTom and Kanako, in love's rooms.\nIn this street, where happiness looms,\nTheir love, a dance with sweet perfumes.",
+        
+        "Klarenbach Gang, in love's embrace,\nTom and Kanako, a timeless grace.\nIn Klarenbachstrasse, love's trace,\nTheir love story, an eternal chase."
+        
+        
+        
+        // Continue with the rest of the poems...
+    ];
+
+    // Function to get a random Kanako poem
+    function getRandomKanakoPoem() {
+        const randomIndex = Math.floor(Math.random() * kanakoPoems.length);
+        return kanakoPoems[randomIndex];
+    }
+
+    // Display a random Kanako poem on page load
+    document.addEventListener("DOMContentLoaded", function () {
+        const poemTextElement = document.getElementById("poem-text");
+        poemTextElement.textContent = getRandomKanakoPoem();
+    });
+</script>
+
+<!-- Added the button element with an id -->
+<button id="change-poem-button" onclick="changePoem()">Daisumechaki</button>
+
+<!-- Added a new script section at the end for the button functionality -->
+<script>
+    // Existing script code here...
+
+    // New functions for button functionality
+    function changePoem() {
+        const poemTextElement = document.getElementById("poem-text");
+        poemTextElement.textContent = getRandomKanakoPoem();
+    }
+</script>
+
+
+    
+</audio>
+
+</body>
+
